@@ -1,0 +1,20 @@
+.ng-valid:not(div)
+{
+  border-left: 5px solid #0a5d00;
+}
+
+.ng-invalid:not(div)
+{
+  border-left: 5px solid #8b0000;
+}
+
+.ng-pristine, .ng-untouched
+{
+  border-left: none!important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
