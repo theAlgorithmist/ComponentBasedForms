@@ -2,11 +2,6 @@
 
 This is the code distribution for the Medium Article, _Component-Based Forms_ (url).
 
-The current cubic Bezier library is illustrated via an interactive Angular 8 demo that uses PIXI 4 for dynamic drawing.  Four-point cubic Bezier interpolation is used for geometric constraints.  Instead of interpolating the Bezier curve at endpoints and using interior control points to influence the curve's shape, the cubic curve is forced to interpolate four points.  The interior control points are computed to enforce the interpolation constraints.
-
-Points on the curve at equal increments of _t_ and _s_ may also be illustrated.  Drag one of the control points to see how the relationship between the two varies as a function of the geometric constraints.
-
-
 Author:  Jim Armstrong - [The Algorithmist]
 
 @algorithmist
