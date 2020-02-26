@@ -37,7 +37,7 @@ import {
 
 import { CreditCardNumberDirective } from '../shared/directives/credit-card-number.directive';
 
-// Credit-card number processing
+// Credit-card number processing/validation
 import { CreditCardData     } from '../shared/cc-data/card-data';
 import { CREDIT_CARD_ERRORS } from '../shared/validators/card-validator';
 import { CCTypes            } from '../shared/cc-types';
@@ -218,7 +218,7 @@ export class CreditCardComponent
   }
 
   /**
-   * Has the CVV numer field been 'touched' or dirty?
+   * Has the CVV number field been 'touched' or dirty?
    */
   public get cvvTouched(): boolean
   {
@@ -239,7 +239,7 @@ export class CreditCardComponent
   public get isValidExpDate(): boolean
   {
     // The year may be greater than the current year (any month is okay) or if equal to the current year, the month can not be less
-    return this._userSelectedYear > this._curYear || (this._userSelectedMonth <= this._curMonth && this._curYear == this._userSelectedYear);
+    return this._userSelectedYear > this._curYear || (this._userSelectedMonth >= this._curMonth && this._curYear == this._userSelectedYear);
   }
 
   /**
@@ -309,10 +309,7 @@ export class CreditCardComponent
       return;
     }
 
-    let digits: number = cvv > 0 && cvv < 10 ? 1 : 0;
-    digits             = cvv >= 10 && cvv < 100 ? 2 : digits;
-    digits             = cvv >= 100 && cvv < 1000 ? 3 : digits;
-    digits             = cvv >= 10000 ? 5 : digits;            // close enough for invalidation
+    const digits: number = cvv == 0 ? 0 : Math.floor(Math.log10(cvv)) + 1;
 
     // Check the CVV length vs required length for the current card
     if (this.cardType !== CCTypes.UNKNOWN)

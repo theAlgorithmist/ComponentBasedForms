@@ -34,10 +34,14 @@
         <option *ngFor="let year of yearData" value="{{year}}">{{year}}</option>
       </select>
 
+      <!-- note that decimal input not disallowed in this demo -->
       <label class="form-pad-left form-pad-right">CVV
       <input [class]="cvvClass"
              id="cvv"
              type="number"
+             min="1"
+             max="9999"
+             step="1"
              formControlName="cvv"
              (input)="onCVVChanged($event)">
       </label>
