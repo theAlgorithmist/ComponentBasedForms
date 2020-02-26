@@ -79,11 +79,10 @@ export class AppComponent implements OnInit
     const lastName  = this.paymentForm.get('lastName');
 
     const ccGroup: FormGroup         = this.paymentForm.controls['creditCard'] as FormGroup;
-    const cardNumberGroup: FormGroup = ccGroup.controls[CCGroupComponents.GROUP_NAME] as FormGroup;
-    const cardNumber: string         = cardNumberGroup.controls[CCGroupComponents.CREDIT_CARD_NUMBER].value;
-    const expMonth: string           = cardNumberGroup.controls[CCGroupComponents.EXPIRATION_MONTH].value;
-    const expYear: string            = cardNumberGroup.controls[CCGroupComponents.EXPIRATION_YEAR].value;
-    const cvv: string                = cardNumberGroup.controls[CCGroupComponents.CVV].value;
+    const cardNumber: string         = ccGroup.controls[CCGroupComponents.CREDIT_CARD_NUMBER].value;
+    const expMonth: string           = ccGroup.controls[CCGroupComponents.EXPIRATION_MONTH].value;
+    const expYear: string            = ccGroup.controls[CCGroupComponents.EXPIRATION_YEAR].value;
+    const cvv: string                = ccGroup.controls[CCGroupComponents.CVV].value;
 
     console.log('First Name  :', firstName.value);
     console.log('Last Name   :', lastName.value);

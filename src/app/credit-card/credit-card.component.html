@@ -1,53 +1,51 @@
 <div [formGroup]="ccSubGroup" class="form-content">
-  <div formGroupName="cardNumberGroup">
-    <div *ngIf="showCardType">
-      <img src="{{creditCardData[cardType].image}}" width="40" height="25">
-      <span> {{creditCardData[cardType].name}} </span>
-    </div>
-    <label for="creditcard">
-      Credit Card
-      <input creditCardNumber
-             [class]="ccnClass"
-             type="text"
-             id="creditcard"
-             formControlName="ccNumber"
-             placeholder="{{placeHolder}}"
-             (onCreditCardNumber)="onCardNumber($event)"
-             (onCreditCardType)="onCardType($event)"
-             (onCreditCardError)="onCardError($event)"
-      >
+  <div *ngIf="showCardType">
+    <img src="{{creditCardData[cardType].image}}" width="40" height="25">
+    <span> {{creditCardData[cardType].name}} </span>
+  </div>
+  <label for="creditcard">
+    Credit Card
+    <input creditCardNumber
+           [class]="ccnClass"
+           type="text"
+           id="creditcard"
+           formControlName="ccNumber"
+           placeholder="{{placeHolder}}"
+           (onCreditCardNumber)="onCardNumber($event)"
+           (onCreditCardType)="onCardType($event)"
+           (onCreditCardError)="onCardError($event)"
+    >
+  </label>
+
+  <div *ngIf="cardError === CreditCardErrors.INVALID_LENGTH" class="form-error-message">Length Invalid</div>
+  <div *ngIf="cardError === CreditCardErrors.INVALID_NUMBER" class="form-error-message">Invalid Card Number</div>
+
+  <div class="form-pad-top ng-pristine">
+    <label for="expireMonth">Expiration</label>
+    <select class="form-pad-left"
+            id="expireMonth"
+            formControlName="expirationMonth"
+            (change)="onMonthSelected($event)">
+      <option *ngFor="let month of monthData" value="{{month.value}}">{{month.name}}</option>
+    </select>
+
+    <select class="form-pad-left" id="expireYear" (change)="onYearSelected($event)" formControlName="expirationYear">
+      <option *ngFor="let year of yearData" value="{{year}}">{{year}}</option>
+    </select>
+
+    <!-- note that decimal input not disallowed in this demo -->
+    <label class="form-pad-left form-pad-right">CVV
+    <input [class]="cvvClass"
+           id="cvv"
+           type="number"
+           min="1"
+           max="9999"
+           step="1"
+           formControlName="cvv"
+           (input)="onCVVChanged($event)">
     </label>
 
-    <div *ngIf="cardError === CreditCardErrors.INVALID_LENGTH" class="form-error-message">Length Invalid</div>
-    <div *ngIf="cardError === CreditCardErrors.INVALID_NUMBER" class="form-error-message">Invalid Card Number</div>
-
-    <div class="form-pad-top ng-pristine">
-      <label for="expireMonth">Expiration</label>
-      <select class="form-pad-left"
-              id="expireMonth"
-              formControlName="expirationMonth"
-              (change)="onMonthSelected($event)">
-        <option *ngFor="let month of monthData" value="{{month.value}}">{{month.name}}</option>
-      </select>
-
-      <select class="form-pad-left" id="expireYear" (change)="onYearSelected($event)" formControlName="expirationYear">
-        <option *ngFor="let year of yearData" value="{{year}}">{{year}}</option>
-      </select>
-
-      <!-- note that decimal input not disallowed in this demo -->
-      <label class="form-pad-left form-pad-right">CVV
-      <input [class]="cvvClass"
-             id="cvv"
-             type="number"
-             min="1"
-             max="9999"
-             step="1"
-             formControlName="cvv"
-             (input)="onCVVChanged($event)">
-      </label>
-
-      <div *ngIf="expError === CreditCardErrors.INVALID_CCV" class="form-error-message">Invalid CCV</div>
-      <div *ngIf="expError === CreditCardErrors.INVALID_MONTH" class="form-error-message">Invalid Month</div>
-    </div>
+    <div *ngIf="expError === CreditCardErrors.INVALID_CCV" class="form-error-message">Invalid CCV</div>
+    <div *ngIf="expError === CreditCardErrors.INVALID_MONTH" class="form-error-message">Invalid Month</div>
   </div>
 </div>

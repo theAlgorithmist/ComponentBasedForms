@@ -15,7 +15,7 @@
  */
 
 /**
- * A credit card sub-form component that creates, manages and returns a form group named {cardNumberGroup}.  This
+ * A credit card sub-form component that creates, manages and returns a form group named {ccSubGroup}.  This
  * group contains a credit card number with form control name {ccNumber}, expiration month {expirationMonth},
  * expiration year {expirationYear}, and CVV {cvv}
  *
@@ -50,7 +50,6 @@ import {
 
 export enum CCGroupComponents
 {
-  GROUP_NAME         = 'cardNumberGroup',
   CREDIT_CARD_NUMBER = 'ccNumber',
   EXPIRATION_MONTH   = 'expirationMonth',
   EXPIRATION_YEAR    = 'expirationYear',
@@ -60,7 +59,6 @@ export enum CCGroupComponents
 export interface CCGroup
 {
   ccSubGroup     : FormGroup;
-  cardNumberGroup: FormGroup;
   ccNumber       : FormControl;
   expirationMonth: FormControl;
   expirationYear : FormControl;
@@ -142,12 +140,10 @@ export class CreditCardComponent
     this._cvv.disable();
 
     this.ccSubGroup = new FormGroup({
-      cardNumberGroup  : new FormGroup({
-        ccNumber       : new FormControl('', Validators.required),
-        expirationMonth: this._expirationMonth,
-        expirationYear : this._expirationYear,
-        cvv            : this._cvv,
-      }),
+      ccNumber       : new FormControl('', Validators.required),
+      expirationMonth: this._expirationMonth,
+      expirationYear : this._expirationYear,
+      cvv            : this._cvv,
     });
   }
 
@@ -214,7 +210,7 @@ export class CreditCardComponent
    */
   public get ccNumberTouched(): boolean
   {
-    return this.ccSubGroup.get('cardNumberGroup').get('ccNumber').dirty;
+    return this.ccSubGroup.get('ccNumber').dirty;
   }
 
   /**
