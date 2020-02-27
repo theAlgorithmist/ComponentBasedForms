@@ -198,14 +198,6 @@ export class CreditCardComponent
   }
 
   /**
-   * Access a direct reference to the sub-group
-   */
-  public get credtCardGroup(): FormGroup
-  {
-    return this.ccSubGroup;
-  }
-
-  /**
    * Has the credit-card number field been 'touched' or dirty?
    */
   public get ccNumberTouched(): boolean
