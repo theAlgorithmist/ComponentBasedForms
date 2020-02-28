@@ -85,6 +85,7 @@ export class CreditCardNumberDirective implements OnInit
     return this._input.value.length;
   }
 
+  // NOTE: HostListener fires change detection; consider RxJS fromEvent() as an alternative
   /** @internal */
   @HostListener('keydown', ['$event'])
   public onKeyDown(evt: KeyboardEvent): boolean
@@ -112,6 +113,10 @@ export class CreditCardNumberDirective implements OnInit
   {
     const cardNumber: string = this._input.value;
 
+    /*
+      Note:  In general, 2-4 digits is all it takes to identify the card type; after that, this test is redundant.  Make this
+      more efficient as an exercise.
+     */
     const cardType: CCTypes = getCardType(cardNumber);
 
     if (cardType === CCTypes.UNKNOWN)
@@ -121,7 +126,6 @@ export class CreditCardNumberDirective implements OnInit
     }
     else
     {
-      // We have a card type
       this._cardTypeOutput.emit(cardType);
     }
 
