@@ -1,6 +1,6 @@
 # Angular Version 9 Component-Based Forms
 
-This is the code distribution for the Medium Article, _Component-Based Forms_ (url).
+This is the code distribution for the Medium Article, _Component-Based Forms_ .
 
 Author:  Jim Armstrong - [The Algorithmist]
 
