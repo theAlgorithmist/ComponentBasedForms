@@ -16,7 +16,9 @@ Typescript: 3.7.5
 
 ## Running the demo
 
-This application illustrates front-end credit-card processing and includes a small set of Typescript libraries that may be used outside this demo in your production code.  These files are located in the _/src/app/shared/libs_ folder.
+This application illustrates front-end credit-card processing and includes a small set of Typescript libraries that may be used outside this demo in your production code.  
+
+These files are located in the _/src/app/shared/libs_ folder.
 
 ```
 get-card-type.ts
